@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Install system dependencies required for CAD libraries (GL/GLU)
 RUN apt-get update --allow-releaseinfo-change -y && \
     apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1 \
     libglu1-mesa \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -27,6 +27,7 @@ EXPOSE 10000
 
 # Command to run the application
 CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:10000", "app:app"]
+
 
 
 
